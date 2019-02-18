@@ -15,18 +15,19 @@ def find_maxima(x):
 
     idx = []
 
+    # check the left boundary
     if x[0] > x[1]:
         idx.append(0)
 
+    # check the middle points
     for i in range(1,len(x)-1,1):
-        print(i)
         # `i` is a local maximum if the signal decreases before and after it
         if x[i-1] < x[i] and x[i+1] < x[i]:
             idx.append(i)
 
-    leng = len(x);
-
-    if x[leng-2] < x[leng-1]:
-        idx.append(leng-1)
+    # check the right boundary
+    leng = len(x)-1;
+    if x[leng-1] < x[leng]:
+        idx.append(leng)
 
     return idx

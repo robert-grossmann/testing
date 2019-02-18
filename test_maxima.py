@@ -20,19 +20,19 @@ def test_sine_wave():
     exp = [16,78]
     assert exp == out
 
-def test_add1():
+def test_left_right_boundary_lgr():
     inp = [4, 2, 1, 3, 1, 2]
     out = find_maxima(inp)
     exp = [0,3,5]
     assert exp == out
 
-def test_add2():
+def test_left_right_boundary_rgl():
     inp = [4, 2, 1, 3, 1, 5]
     out = find_maxima(inp)
     exp = [0,3,5]
     assert exp == out
 
-def test_add3():
+def test_left_boundary_lgr():
     inp = [4, 2, 1, 3, 1]
     out = find_maxima(inp)
     exp = [0,3]
