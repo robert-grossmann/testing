@@ -30,18 +30,43 @@ def find_maxima(x):
 
     else:
 
+        # create a canditate list
+        cand = [];
+
+        # check the left boundary
         if x[0] > x[1]:
             idx.append(0)
 
-        # check the middle points
-        for i in range(1,len(x)-1,1):
-            # `i` is a local maximum if the signal decreases before and after it
-            if x[i-1] < x[i] and x[i+1] < x[i]:
-                idx.append(i)
+        # loop over the array
+        for i in range(0,leng-1,1):
 
-        # check the right boundary
-        leng = len(x)-1;
-        if x[leng-1] < x[leng]:
-            idx.append(leng)
+            # check a pair
+            if x[i] < x[i+1] and len(cand) == 0: 
+
+                # cand.append(i+1); 
+                cand = [i+1]; 
+
+            elif x[i] == x[i+1] and len(cand) > 0:
+
+                cand.append(i+1); 
+
+            elif x[i] > x[i+1] and len(cand) > 0: 
+
+                for j in range(0,len(cand)):
+                    idx.append(cand[j]); 
+
+                print(idx)
+
+                cand = [];
+
+            elif x[i] < x[i+1] and len(cand) > 0: 
+
+                cand = [i+1];
+
+        if len(cand) > 0: 
+
+            for j in range(0,len(cand)):
+                idx.append(cand[j]); 
 
     return idx
+
