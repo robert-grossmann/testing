@@ -14,8 +14,59 @@ def find_maxima(x):
     """
 
     idx = []
-    for i in range(len(x)):
-        # `i` is a local maximum if the signal decreases before and after it
-        if x[i-1] < x[i] and x[i+1] < x[i]:
-            idx.append(i)
+
+    leng = len(x)
+
+    if leng == 1:
+
+        idx.append(0);
+
+    elif leng == 2:
+        
+        if x[0] > x[1]:
+            idx.append(0)
+        else:
+            idx.append(1)
+
+    else:
+
+        # create a canditate list
+        cand = [];
+
+        # check the left boundary
+        if x[0] > x[1]:
+            idx.append(0)
+
+        # loop over the array
+        for i in range(0,leng-1,1):
+
+            # check a pair
+            if x[i] < x[i+1] and len(cand) == 0: 
+
+                # cand.append(i+1); 
+                cand = [i+1]; 
+
+            elif x[i] == x[i+1] and len(cand) > 0:
+
+                cand.append(i+1); 
+
+            elif x[i] > x[i+1] and len(cand) > 0: 
+
+                for j in range(0,len(cand)):
+                    idx.append(cand[j]); 
+
+                print(idx)
+
+                cand = [];
+
+            elif x[i] < x[i+1] and len(cand) > 0: 
+
+                cand = [i+1];
+
+        if len(cand) > 0: 
+
+            for j in range(0,len(cand)):
+                idx.append(cand[j]); 
+
     return idx
+
