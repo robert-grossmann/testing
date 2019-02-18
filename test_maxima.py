@@ -38,6 +38,18 @@ def test_left_boundary_lgr():
     exp = [0,3]
     assert exp == out
 
+def test_len1():
+    inp = [4]
+    out = find_maxima(inp)
+    exp = [0]
+    assert exp == out
+
+def test_len2():
+    inp = [2,4]
+    out = find_maxima(inp)
+    exp = [1]
+    assert exp == out
+
 # additional tests for
 # - max on both borders
 #   x = [4, 2, 1, 3, 1, 2]
